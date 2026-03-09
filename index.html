@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Proficiency Test — Introduction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Introduction Card ===== -->
+  <div class="card">
+
+    <div class="badge">English Proficiency Test</div>
+
+    <h1>Welcome to the<br /><span>English Test</span></h1>
+    <p class="subtitle">
+      Assess your English language skills across reading, listening,
+      grammar, and vocabulary. The test is fully timed — read every
+      instruction carefully before you begin.
+    </p>
+
+    <!-- Quick-stats row -->
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="icon">⏱️</div>
+        <div class="label">Duration</div>
+        <div class="value">60 min</div>
+      </div>
+      <div class="info-item">
+        <div class="icon">📝</div>
+        <div class="label">Questions</div>
+        <div class="value">40</div>
+      </div>
+      <div class="info-item">
+        <div class="icon">🏆</div>
+        <div class="label">Pass Mark</div>
+        <div class="value">70%</div>
+      </div>
+    </div>
+
+    <!-- Test sections -->
+    <div class="sections">
+      <h2>Test Sections</h2>
+      <ul>
+        <li>
+          <span class="dot"></span>
+          Reading Comprehension
+          <span class="points">10 pts</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          Listening Comprehension
+          <span class="points">10 pts</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          Grammar &amp; Structure
+          <span class="points">10 pts</span>
+        </li>
+        <li>
+          <span class="dot"></span>
+          Vocabulary &amp; Usage
+          <span class="points">10 pts</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Rules / notes -->
+    <div class="rules">
+      <p>
+        <strong>Important:</strong> Once the test starts, the timer cannot be
+        paused. Ensure you have a stable internet connection. Each question
+        must be answered within the allotted time or it will be marked as
+        unanswered. Good luck! 🍀
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <button class="btn-start" id="btnStart">Start Test</button>
+
+  </div>
+
+  <!-- ===== Countdown Modal ===== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal" tabindex="-1" id="modalContent">
+      <p id="modalTitle">Get ready…</p>
+      <div class="countdown" id="countdown" aria-live="assertive" aria-atomic="true">3</div>
+      <p id="modalDesc">Your test is starting!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
