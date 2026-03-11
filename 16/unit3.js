@@ -1,37 +1,35 @@
-registerBook("Unit3.pdf", {
-  icon: "📗",
+registerBook("Unit 3", {
+  icon: "📜",
   desc: "統測單字區第3週",
-  badge: "Unit3",
-  content: [
-    "expert n.專家 adj.熟練的",
-    "average n.平均 adj.平均的",
-    "frequent adj.頻繁的",
-    "individual n.個人 adj.個別的",
-    "pressure n.壓力",
-    "mental adj.心理的",
-    "muscle n.肌肉",
-    "stretch v.伸展 n.伸展",
-    "regular adj.規律的",
-    "proper adj.適當的",
-    "physical adj.身體的;物理的",
-    "technique n.技巧;技術",
-    "condition n.狀況;條件",
-    "prevent v.預防;阻止",
-    "improve v.改善;增進",
-    "positive adj.正面的;積極的",
-    "negative adj.負面的;消極的",
-    "distance n.距離",
-    "process n.過程 v.加工",
-    "material n.材料;原料",
-    "product n.產品",
-    "quality n.品質;特質",
-    "quantity n.數量",
-    "standard n.標準 adj.標準的",
-    "modern adj.現代的",
-    "technology n.科技",
-    "system n.系統;體制",
-    "environment n.環境",
-    "resource n.資源",
-    "pollution n.污染"
-  ],
+  badge: "Unit 3",
+  content: `ancient adj.古代的 [cite: 3]
+frightening adj.令人恐懼的 [cite: 3]
+freeze v.凍結;結冰 [cite: 3]
+program n.程式;計畫;節目 [cite: 3]
+actually adv.事實上 [cite: 3]
+confuse v.使困惑 [cite: 3]
+ignore v.忽視;不理會 [cite: 3]
+normal adj.正常的 [cite: 3]
+value n.價值 v.重視 [cite: 10]
+religious adj.宗教的 [cite: 10]
+ceremony n.儀式;典禮 [cite: 10]
+symbol n.象徵 [cite: 10]
+represent v.代表;象徵 [cite: 10]
+tradition n.傳統 [cite: 10]
+culture n.文化 [cite: 10]
+origin n.起源 [cite: 10]
+spread v.傳播;散佈 [cite: 30]
+scary adj.可怕的 [cite: 30]
+praise v.n.讚美 [cite: 30]
+spirit n.精神;靈魂 [cite: 30]
+brighten v.使發亮;使變快樂 [cite: 30]
+harvest n.v.收穫 [cite: 30]
+offer v.提供;祭拜 [cite: 30]
+evil adj.邪惡的 n.邪惡 [cite: 30]
+protect v.保護 [cite: 30]
+prevent v.防止 [cite: 30]
+remind v.提醒;使想起 [cite: 30]
+cost n.成本;價錢 v.花費 [cite: 30]
+surround v.圍繞 [cite: 30]
+bless v.祝福;保佑 [cite: 30]`,
 });
