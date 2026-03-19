@@ -1,35 +1,35 @@
-registerBook("Unit 3", {
-  icon: "📜",
-  desc: "統測單字區第3週",
-  badge: "Unit 3",
-  content: `ancient adj.古代的 [cite: 3]
-frightening adj.令人恐懼的 [cite: 3]
-freeze v.凍結;結冰 [cite: 3]
-program n.程式;計畫;節目 [cite: 3]
-actually adv.事實上 [cite: 3]
-confuse v.使困惑 [cite: 3]
-ignore v.忽視;不理會 [cite: 3]
-normal adj.正常的 [cite: 3]
-value n.價值 v.重視 [cite: 10]
-religious adj.宗教的 [cite: 10]
-ceremony n.儀式;典禮 [cite: 10]
-symbol n.象徵 [cite: 10]
-represent v.代表;象徵 [cite: 10]
-tradition n.傳統 [cite: 10]
-culture n.文化 [cite: 10]
-origin n.起源 [cite: 10]
-spread v.傳播;散佈 [cite: 30]
-scary adj.可怕的 [cite: 30]
-praise v.n.讚美 [cite: 30]
-spirit n.精神;靈魂 [cite: 30]
-brighten v.使發亮;使變快樂 [cite: 30]
-harvest n.v.收穫 [cite: 30]
-offer v.提供;祭拜 [cite: 30]
-evil adj.邪惡的 n.邪惡 [cite: 30]
-protect v.保護 [cite: 30]
-prevent v.防止 [cite: 30]
-remind v.提醒;使想起 [cite: 30]
-cost n.成本;價錢 v.花費 [cite: 30]
-surround v.圍繞 [cite: 30]
-bless v.祝福;保佑 [cite: 30]`,
+registerBook("Unit3", {
+  icon: "📘",
+  desc: "Focuses on essential vocabulary covering materials, technology, travel, and social responsibilities, including key verbs and adjectives for professional communication.",
+  badge: "Vocabulary & Dialogues",
+  content: `plastic n.塑膠; adj.塑膠的;可塑的
+plant v.種植; n.植物;工廠
+plain n.平原; adj.簡樸的;清楚的
+afford v.負擔得起
+expectation n.期待;預期
+responsible adj.負責的
+terminal n.終點;總站;航廈; adj.末端的;晚期的
+field n.原野;領域
+wonder v.對...感到疑惑;想知道; n.驚奇;奇觀
+tough adj.艱難的;頑固的;剛強的
+distinguish v.分辨
+vague adj.模糊的
+frequently adv.經常地;屢次地
+rank v.把...分等級; n.地位;等級
+athlete n.運動員
+scene n.風景;一個場面
+spot v.看到; n.地點;斑點;汙漬
+transportation n.運輸;運輸工具
+complete v.完成;結束; adj.完全的
+journey n.旅程
+digital adj.數位的
+device n.裝置;手段
+fashion n.流行;樣式;風氣
+item n.項目;條款
+adventure v.冒險去做; n.冒險
+appropriate adj.適當的;相稱的
+donate v.捐贈
+burden v.使負重; n.負擔
+reserve v.預訂;保留
+distress v.使苦惱; n.苦惱;悲痛`
 });
