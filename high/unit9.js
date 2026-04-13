@@ -2,43 +2,39 @@ registerBook("Unit 9", {
   icon: "📘",
   desc: "Covers interpersonal relationships, environmental balance, and professional life terminology.",
   badge: "Social & Environment",
-  content: `introduce v.介紹
-introduction n.介紹
-position n.位置;立場;職位
-wedding n.婚禮
-balance v.n.平衡
-balanced adj.均衡的
-unbalanced adj.不平衡的
-climate n.氣候
-especially adv.尤其
-especially adj.特別的
-approach v.靠近;n.方法;路徑
-ordinary adj.普通的
-character n.角色;性格;文字
-border n.邊界
-crowd n.群眾;v.擠滿
-regard v.n.關注;看待;尊重
-refuse v.拒絕
-refusal n.拒絕
-examine v.檢查;測試
-examination n.檢查;考試
-discover v.發現
-discovery n.發現
-marriage n.婚姻
-married adj.已婚的
-marry v.結婚
-survival n.倖存;生存
-survive v.生存;倖存
-survivor n.生還者
-citizen n.公民;市民
-prevent v.預防;阻止
-prevention n.預防;阻止
-effective adj.有效的
-effect n.影響;效果
-agreement n.同意;協議
-agree v.同意
-professional adj.專業的;n.專家
-profile n.人物簡介;輪廓
-benefit v.受惠;n.利益;好處
-beneficial adj.有益的`
+  content: `introduce v. 介紹 同acquaint, present
+introduction n. 介紹
+position n. 位置；立場；職位 同place; status; job
+wedding n. 婚禮
+balance v. n. 平衡
+balanced adj. 均衡的 反unbalanced
+condition n. 情況；條件 同circumstance, situation
+available adj. 可獲得的；可用的；（某人）有空的
+character n. 性格；角色 同personality
+survive v. 存活 同live
+survival n. 存活；生還
+regard v. n. 認為；尊重
+regards n. 關心；問候
+discover v. 發現 同uncover, find out
+material n. 材料
+supply v. n. 提供；供應 同provide, offer
+especially adv. 尤其；特別地 同particularly, in particular
+treasure v. 珍惜 同cherish
+examine v. 檢查；考試 同check, inspect; test
+average n. 平均 adj. 平均的；普通的
+crowd v. 聚集；擠滿 n. 群眾；一堆
+crowded adj. 擁擠的 同jammed, packed 反empty, vacant
+object v. 反對 同disapprove, protest 反agree
+border n. 國界；邊界 同boundary
+mature adj. 成熟的 反immature
+solution n. 解決方法
+approach v. 接近 同 come near 反leave
+ordinary adj. 平凡的；普通的 同average, common
+rather adv. 相當地；寧願
+refuse v. 拒絕 同reject, turn down
+task n. 任務；工作
+section n. 部分；地區；（文章等的）節
+measure v. 測量
+marriage n. 婚姻
+climate n. 氣候`
 });

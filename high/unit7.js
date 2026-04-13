@@ -1,43 +1,43 @@
-registerBook("Unit 6", {
+registerBook("Unit 7", {
   icon: "📘",
-  desc: "Covers social issues, personal development, management, and health-related terms.",
-  badge: "Advanced Concepts",
-  content: `cause v.造成;n.原因
-company n.陪伴;朋友;公司
-worse adj.更壞的;更差的
-worsen v.惡化;變糟
-attention n.注意
-provide v.提供
-lower v.降下;減低;adj.較低的;下等的
-energy n.能源;精力
-develop v.發展;沖印
-development n.發展;成長
-improve v.改善
-improvement n.改進;改善
-personal adj.個人的
-personality n.個性;人格
-custom n.習俗;海關
-customer n.顧客
-social adj.社會的;社交的
-society n.社會
-support v.支持;撫養;n.支持
-due adj.到期的
-instead adv.代替
-waste v.n.浪費;廢棄物
-human adj.人的;n.人
-contact v.n.接觸;聯繫
-statement n.陳述;聲明
-manage v.管理;經營;設法做
-manager n.經理;負責人
-stress v.強調;n.壓力;重要性
-stressful adj.有壓力的
-system n.系統;制度
-diet v.節食;n.飲食
-term n.學期;任期;專門術語
-spread v.擴展;傳播;n.擴展;範圍
-control v.n.控制
-disease n.疾病
-manner n.方式;禮貌
-fever n.發燒
-concern v.關心;關於;n.關切`
+  desc: "Focuses on creativity, travel, environmental issues, and professional development.",
+  badge: "Creative & Global",
+  content: `create v. 創造 同invent, make
+creative adj. 有創造力的；創新的
+creativity n. 創造力
+creation n. 創造（物）
+creature n. 生物 同a living thing
+travel v. n. 旅行 同journey, trip
+traveler n. 旅客
+mention v. n. 提及
+favorite adj. 最喜愛的 n. 最喜愛的人事物
+favor v. 贊同；偏愛 同approve; prefer
+result v. n. 結果 同consequence, outcome
+crisis n. 危機（複數形為crises）
+effort n. 努力
+cultural adj. 文化的
+culture n. 文化 同civilization
+handle v. 處理；操作 同deal with, manage; operate
+design v. n. 設計
+designer n. 設計師
+stage v. 上演 n. 舞臺；階段 同step
+realize v. 了解；實現
+goal n. 目標；球門 同aim, target
+amount v. 合計
+damage v. 損害 同harm
+simply adv. 僅僅；不過 同just, only
+quality n. 品質 adj. 優質的
+prize n. 獎；獎賞
+delay v. n. 延遲；延期 同postpone, put off
+figure v. 計算 同calculate
+hall n. 大廳；（正門入口處的）走廊
+event n. 事件；（比賽）項目
+track n. 行蹤；小徑 同path
+author n. 作者 同writer
+thus adv. 因此 同therefore, as a result
+occur v. 被想起；發生 同happen, take place
+host v. 主持；主辦
+rent v. 租 n. 租金
+upset adj. 心煩的 同irritated, worried
+major adj. 主要的；大部分的 同main 反minor`
 });
