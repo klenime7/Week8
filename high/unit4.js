@@ -1,58 +1,52 @@
 registerBook("Unit 4", {
   icon: "📘",
-  desc: "Focuses on interests, daily activities, health, and general vocabulary including words like interest, collect, and medicine.",
-  badge: "Vocabulary & Grammar",
-  content: `interest v.使感興趣;n.興趣;利息
-interested adj.感興趣的
-interesting adj.有趣的
-collect v.蒐集;募捐
-collection n.蒐集;募捐
-difficult adj.困難的;難相處的
-difficulty n.困難
-reason n.理由;原因
-reasonable adj.合理的;通情達理的
-expect v.預期;期盼;要求
-unexpectedly adv.出乎意料地
-foreign adj.外國的
-foreigner n.外國人
+  desc: "涵蓋性格特質、心理狀態、社會互動以及日常生活相關的關鍵單字。",
+  badge: "統測高頻單字",
+  content: `notable adj.顯著的;值得注意的
+dishonest adj.不誠實的
+eager adj.渴望的
+disappear v.消失
+trick v.哄騙 n.詭計
+contest n.比賽;競賽
+contestant n.參賽者
 celebrate v.慶祝
-possible adj.可能的
-possibility n.可能性
-language n.語言
-light n.光;光線;光亮;v.點燃;adj.明亮的;輕的;淺色的
-lighten v.減輕;照亮
-medicine n.醫學;藥
-medical adj.醫療的
-knowledge n.知識;知曉
-dead adj.死的;無效的;n.死者
-deadly adj.致命的;adv.極度地
-death n.死亡
-fail v.失敗;不及格
-failure n.失敗
-near adj.近的;prep.在附近
-nearby adv.在附近
-danger n.危險
-dangerous adj.危險的
-package n.包裹;v.打包;包裝
-nature n.天性;自然
-natural adj.天然的;天生的
-naturally adv.自然地;天生地
-plant v.種植;n.植物;工廠
-feed v.餵養;以為食
-hit v.碰撞;打擊;侵襲;n.成功而風行一時的事物
-terrible adj.可怕的;糟的
-terribly adv.非常地
-terrific adj.非常好的
-pleasure n.愉快;樂趣;榮幸
-pleased adj.高興的
-pleasant adj.令人愉快的
-practice v.n.練習;實行;執業
-practical adj.實用的;實際的
-robot n.機器人
-sore adj.疼痛的
-insect n.昆蟲
-safe adj.安全的;n.保險箱
-safety n.安全
-tie n.關係;聯繫;領帶;v.繫;綑
-bear v.承受;忍受;生(小孩);n.熊`
+celebration n.慶祝活動;慶典
+celebrity n.名人
+innocent adj.天真的;清白的
+innocence n.天真;清白
+shame n.羞恥;遺憾
+shameful adj.可恥的
+defend v.防禦;辯解
+defense n.防禦;辯護
+defensive adj.防禦性的
+victim n.受害者;受難者
+pity n.憐憫;可惜的事 v.憐憫;同情
+graduate v.畢業 n.畢業生
+graduation n.畢業
+ideal adj.理想的 n.理想
+originally adv.原本地;最初
+origin n.起源;由來
+original adj.原本的;獨創的
+advertise v.登廣告
+advertisement n.廣告
+commercial n.電視廣告 adj.商業的
+possess v.擁有
+possession n.財産;擁有
+specific adj.特定的;明確的
+specifically adv.特定地;明確地
+previous adj.先前的
+previously adv.先前地
+decorate v.裝飾
+decoration n.裝飾;裝飾品
+emergency n.緊急狀況
+aware adj.知道的;察覺的
+awareness n.察覺;體認
+behave v.表現;行為舉止
+behavior n.行為;舉止
+confident adj.自信的
+confidence n.信心
+fortunate adj.幸運的
+fortune n.財富;運氣
+optimistic adj.樂觀的
+poverty n.貧窮`
 });

@@ -1,48 +1,35 @@
-registerBook("Unit 2 Intermediate", {
+registerBook("Unit 2", {
   icon: "📘",
-  desc: "More words and phrases for daily use",
-  badge: "Intermediate",
-  content: `
-able adj.有能力的
-disable v.使傷殘
-enable v.使能夠
-ability n.能力
-trip v.絆倒 n.旅遊
-allow v.允許;容許
-computer n.電腦
-final adj.最後的 n.決賽
-finally adv.最後;終於
-happen v.發生
-treat v.對待;款待;治療 n.請客
-treatment n.治療;對待
-serious adj.認真的;嚴重的
-serve v.供應;服務;提供
-service n.服務
-surprise v.使驚訝 n.驚訝
-surprised adj.感到驚訝的
-surprising adj.令人驚訝的
-fight v.打架;爭吵 n.爭論;爭吵
-notice v.注意 n.布告;通知;注意
-worry v.擔心 n.擔心
-worried adj.擔心的
-tip n.祕訣;小費
-act v.行動;扮演 n.行為
-action n.行動
-share v.分享 n.一份
-raise v.養育;舉起;提高 n.提高;加薪
-dress v.穿衣;打扮 n.洋裝;服裝
-traffic n.交通
-film v.拍電影 n.底片;電影
-drop v.掉落;放棄 n.下降
-heat v.加熱 n.熱度
-attack v.攻擊;抨擊 n.攻擊;抨擊
-item n.項目;一則
-hurt v.受傷;疼痛
-enter v.進入;輸入
-paint v.油漆;繪畫 n.油漆;顏料
-painting n.畫
-throat n.喉嚨
-meal n.一餐
-hide v.隱藏;躲藏
-`,
+  desc: "Words related to politics and society",
+  badge: "Unit 2",
+  content: `political adj.政治的
+miserable adj.悲慘的
+hide v.躲藏;隱瞞
+passage n.通道;走廊;一段
+arrest v.n.逮捕
+emergency n.緊急情況;突發事件
+main adj.主要的
+civil adj.平民的;公民的;文明的
+lack v.n.缺乏
+democracy n.民主
+citizen n.公民;市民;居民
+force v.強迫 n.軍隊;力量
+rebellion n.叛亂
+defeat v.n.擊敗
+predict v.預測
+comic adj.喜劇的;滑稽的
+various adj.各式各樣的
+unique adj.獨一無二的
+unexpected adj.出乎意料地
+available adj.可獲得的;有空的;在手邊的
+function v.起作用 n.功能
+remove v.移除
+particular adj.特別的
+definitely adv.必定地
+option n.選擇
+treat v.對待;治療
+currently adv.現在;目前
+recycle v.使再循環;回收
+purchase v.n.購買
+trend n.趨勢;傾向`,
 });
