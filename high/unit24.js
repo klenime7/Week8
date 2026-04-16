@@ -1,0 +1,51 @@
+registerBook("Unit24", {
+icon: "📘",
+desc: "精選 Unit 24 核心單字，涵蓋政治、展覽與基礎科學詞彙。",
+badge: "Unit 24",
+content: `
+element n.元素;成分
+advertise v.廣告
+advertisement n.廣告
+political adj.政治的
+politician n.政治人物;政客
+exhibit v.展覽;展示;n.展品
+exhibition n.展覽會
+restrict v.限制
+restriction n.限制
+determine v.決定;下決心做
+determined adj.下定決心的;堅定的
+determination n.決心;堅定
+impress v.給……………留下深刻印象
+impression n.印象
+impressive adj.令人印象深刻的
+permit v.許可;允許
+permission n.許可;准許
+quote v.引用;引述
+quotation n.引語;引述
+reveal v.顯露;揭露
+strength n.力氣;優勢;強項
+strengthen v.加強
+surround v.圍繞
+surroundings n.環境
+significant adj.重要的;意義深長的
+hint v.暗示;n.暗示
+dairy n.酪農場;adj.牛奶的;牛奶製的
+dizzy adj.昏眩的
+remote adj.遙遠的;偏僻的
+hollow v.挖空;adj.空的
+misery n.痛苦;不幸
+elevator n.電梯
+muscle n.肌肉
+mystery n.神秘事件;難以理解的事物
+crew n.全體船員;全體機員
+fuel v.給……加燃料;n.燃料
+lung n.肺
+election n.選舉
+export v.輸出;n.出口
+arrest v.n.逮捕
+polar adj.極地的
+pole n.極;柱;桿
+violent adj.猛烈的;兇暴的
+violence n.暴力
+`,
+});
