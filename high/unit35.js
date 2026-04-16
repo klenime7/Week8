@@ -1,9 +1,8 @@
 registerBook("Unit 35", {
 icon: "📗",
-desc: "聚焦於社會組成與個人特質，包含防禦、移民、集會及資源分配等單字。",
-badge: "Unit 35",
-content: `
-require v.要求;需要
+desc: "高中進階核心字彙",
+badge: "必考單字",
+content: `require v.要求;需要
 requirement n.必要條件;必需品
 gradual adj.逐漸的
 gradually adv.漸漸地
@@ -27,9 +26,36 @@ immigrate v.移民
 genuine adj.真正的;真誠的
 genuinely adv.真誠地
 equipment n.設備;裝備
-inflate v.使物資上漲;使充氣
+inflate v.使物價上漲;使充氣
 inflation n.通貨膨脹
 intimate adj.親密的
-intimately adv.親密地
-`,
+intimately adv.親密地;密切地
+fulfill v.實現;滿足
+fulfillment n.實現;滿足感
+resemble v.相似;相像
+resemblance n.相似;相似點
+ingredient n.原料;成分
+consequence n.後果;結果
+consequently adv.所以;因而
+satisfy v.使滿意
+satisfaction n.滿意
+satisfactory adj.令人滿意的
+conserve v.保存
+conservative adj.保守的
+responsible adj.承擔責任的;有責任感的
+responsibility n.責任
+negotiate v.談判;商量
+negotiation n.談判;協商
+generation n.世代
+appropriate adj.適當的
+appropriately adv.適當地
+accurate adj.精確的
+accuracy n.正確性
+hesitate v.猶豫
+hesitation n.猶豫;遲疑
+pronounce v.發音;法庭上宣稱
+pronunciation n.發音
+autobiography n.自傳
+audience n.觀眾;聽眾
+circumstance n.情況`
 });
