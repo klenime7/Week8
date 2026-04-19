@@ -5,7 +5,7 @@ registerBook("Unit 10", {
   content: `effect n. 效果；影響
 effective adj. 有效的
 ineffective adj. 無效的
-industry n. 工業；（某種）行業
+industry n. 工業；行業
 industrial adj. 工業的
 ill adj. 生病的
 illness n. 生病

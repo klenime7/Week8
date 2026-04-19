@@ -8,7 +8,7 @@ believe v. 相信；信仰
 belief n. 信仰；信任
 through prep. 穿過；以、用
 throughout prep. 遍及；遍布
-mean v. 意思是（三態：mean, meant, meant）
+mean v. 意思是
 meaning n. 意思；意義
 meaningful adj. 有意義的
 means n. 手段；方法
@@ -33,7 +33,7 @@ block v. 阻礙
 error n. 錯誤
 science n. 自然科學
 scientist n. 科學家
-teenager n. （13 歲至19 歲的）青少年
+teenager n. 青少年
 headache n. 頭痛；難題
 shape v. 使成形
 count v. 數；計算
@@ -44,7 +44,7 @@ topic n. 主題
 sign v. 簽名 n. 手勢；告示
 signature n. 簽名
 signal v. 發信號；示意
-throw v. 丟；擲（三態：throw, threw, thrown）
+throw v. 丟；擲
 square n. 廣場；正方形
 strange adj. 不尋常的；奇怪的
 stranger n. 陌生人；外地人

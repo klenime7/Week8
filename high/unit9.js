@@ -9,7 +9,7 @@ wedding n. 婚禮
 balance v. n. 平衡
 balanced adj. 均衡的
 condition n. 情況；條件
-available adj. 可獲得的；可用的；（某人）有空的
+available adj. 可獲得的；可用的；有空的
 character n. 性格；角色
 survive v. 存活
 survival n. 存活；生還
@@ -33,7 +33,7 @@ ordinary adj. 平凡的；普通的
 rather adv. 相當地；寧願
 refuse v. 拒絕
 task n. 任務；工作
-section n. 部分；地區；（文章等的）節
+section n. 部分；地區；節
 measure v. 測量
 marriage n. 婚姻
 climate n. 氣候`

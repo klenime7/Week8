@@ -16,7 +16,7 @@ crime n. 罪
 criminal n. 罪犯
 previous adj. 先前的
 decorate v. 裝飾
-decoration n. 裝飾（品）；裝潢
+decoration n. 裝飾；裝潢
 transport v. 搬運；運輸
 transportation n. 傳輸；運輸工具
 dessert n. 甜點
@@ -25,12 +25,12 @@ capture v. 捕獲；拍攝
 coach v. 訓練
 rob v. 搶奪；搶劫
 robber n. 搶劫犯
-robbery n. 搶劫（案）
+robbery n. 搶劫
 leisure n. 空閒
 wisdom n. 智慧；知識
 urban adj. 市區的
 stable adj. 穩定的
-portion n. 部分；（食物的）一份；一客
+portion n. 部分；一份；一客
 vanish v. 消失；滅絕
 react v. 反應
 reaction n. 反應
@@ -40,7 +40,7 @@ deed n. 行為
 dip v. 浸泡；下降
 mental adj. 心理的；精神的
 athlete n. 運動員
-athletic adj. 運動（員）的；體格健壯的
+athletic adj. 運動的；體格健壯的
 harbor n. 海港；避風港
 pill n. 藥丸
 profit v. 對⋯⋯有益；獲益 n. 利潤；利益

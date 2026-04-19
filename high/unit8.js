@@ -12,7 +12,7 @@ method n. 方法
 increase v. 增加
 punish v. 處罰；懲罰
 bother v. 煩擾；費心 n. 麻煩
-spot v. 看到（三態：spot, spotted, spotted）
+spot v. 看到
 aim v. 瞄準；意欲 n. 目標
 shy adj. 害羞的；內向的
 deny v. 否認；拒絕
@@ -23,7 +23,7 @@ score v. 得分
 loss n. 損失；失去
 lack v. n. 缺乏
 aid v. n. 幫助；救助
-period n. 時期；句點；（一堂）課
+period n. 時期；句點；課
 gather v. 聚集；集合
 match v. 和⋯⋯相配；比得上
 stretch v. 伸展；延伸
