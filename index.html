@@ -63,9 +63,11 @@
     [data-theme="dark"] body::after  { background: radial-gradient(circle, rgba(88,86,214,0.12) 0%, rgba(88,86,214,0) 70%); }
     [data-theme="dark"] .app-toolbar { background: rgba(44,44,46,0.7); }
     [data-theme="dark"] .speaker-btn,
-    [data-theme="dark"] .voice-toggle { background: rgba(44,44,46,0.9); color:#ffffff; }
+    [data-theme="dark"] .voice-toggle,
+    [data-theme="dark"] .mode-toggle { background: rgba(44,44,46,0.9); color:#ffffff; }
     [data-theme="dark"] .speaker-btn:hover,
-    [data-theme="dark"] .voice-toggle:hover { background: rgba(58,58,60,1); }
+    [data-theme="dark"] .voice-toggle:hover,
+    [data-theme="dark"] .mode-toggle:hover { background: rgba(58,58,60,1); }
     [data-theme="dark"] .review-item { background: rgba(44,44,46,0.6); }
     [data-theme="dark"] .review-item:hover { background: rgba(58,58,60,0.8); }
     [data-theme="dark"] .book-card { background: rgba(44,44,46,0.8); border-color: rgba(255,255,255,0.08); }
@@ -125,6 +127,30 @@
     .voice-toggle:hover { background:#fff; box-shadow: 0 2px 8px rgba(0,113,227,0.1); }
     .voice-toggle:active { transform: scale(0.96); }
     .voice-label { font-size:11px; color:var(--label-txt); font-weight:600; }
+
+    .mode-toggle {
+      position: fixed !important; top: 12px; right: 186px; z-index: 101;
+      height: 36px; background: rgba(255,255,255,0.7); border: 1px solid var(--divider);
+      border-radius: var(--radius-pill); padding: 0 12px; font-size: 12px; font-weight: 600;
+      color: var(--txt); cursor: pointer; backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur); transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .mode-toggle:hover { background:#fff; box-shadow: 0 2px 8px rgba(0,113,227,0.1); }
+    .mode-toggle:active { transform: scale(0.96); }
+    .mode-toggle.active {
+      border-color: rgba(0,113,227,0.45);
+      background: rgba(0,113,227,0.12);
+      color: var(--accent);
+    }
+    .mode-label { font-size:11px; color:var(--label-txt); font-weight:600; }
+    .mode-state { font-size:11px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+
+    [data-theme="dark"] .mode-toggle.active {
+      border-color: rgba(0,113,227,0.5);
+      background: rgba(0,113,227,0.22);
+      color: #ffffff;
+    }
 
     html, body {
       height: 100%; margin: 0; background: var(--bg);
@@ -289,6 +315,32 @@
     }
     .toast.show { transform:translateX(-50%) translateY(0); }
 
+    .mode-toast {
+      position: fixed;
+      top: 68px;
+      right: 18px;
+      transform: translateX(120%);
+      opacity: 0;
+      pointer-events: none;
+      background: #1d1d1f;
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+      z-index: 220;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .mode-toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    [data-theme="dark"] .mode-toast {
+      background: rgba(44,44,46,0.95);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
     /* ===== QUIZ CARD ===== */
     #quizView { display:none; width:100%; align-items:center; justify-content:center; min-height:calc(100vh - 100px); }
     #quizView.active { display:flex; }
@@ -411,6 +463,9 @@
       .github-btn { top:8px; right:12px; width:32px; height:32px; }
       .theme-toggle { top:8px; right:48px; width:32px; height:32px; }
       .voice-toggle { top:8px !important; right:84px !important; padding:3px 8px; }
+      .mode-toggle { top:8px !important; right:130px !important; padding:3px 8px; }
+      .mode-label { display:none; }
+      .mode-toast { top:56px; right:12px; max-width:calc(100vw - 24px); font-size:11px; }
       main { padding:0; margin-top:52px; }
       .big-score { font-size:56px; }
       input[type=text] { max-width:100%; }
@@ -456,6 +511,12 @@
     <span id="voicestate">UK</span>
   </button>
 
+  <!-- Mode Toggle -->
+  <button id="modeToggleBtn" class="mode-toggle" title="Switch Quiz Mode" aria-label="Switch quiz mode" aria-pressed="false">
+    <span class="mode-label">Mode</span>
+    <span id="modeState" class="mode-state">MIXED</span>
+  </button>
+
   <!-- GitHub Button -->
   <a id="githubBtn" class="github-btn" href="https://github.com" target="_blank" title="Visit GitHub" aria-label="GitHub">
     <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor">
@@ -478,6 +539,7 @@
   </button>
 
   <div id="toast" class="toast"></div>
+  <div id="modeToast" class="mode-toast" role="status" aria-live="polite"></div>
 
   <main>
     <!-- Homepage -->
@@ -589,11 +651,30 @@
   <script src="high/unit21.js"></script>
   <script src="high/unit22.js"></script>
   <script src="high/unit23.js"></script>
+  <script src="high/unit24.js"></script>
+  <script src="high/unit25.js"></script>
+  <script src="high/unit26.js"></script>
+  <script src="high/unit27.js"></script>
+  <script src="high/unit28.js"></script>
+  <script src="high/unit29.js"></script>
+  <script src="high/unit30.js"></script>
+  <script src="high/unit31.js"></script>
+  <script src="high/unit32.js"></script>
+  <script src="high/unit33.js"></script>
+  <script src="high/unit34.js"></script>
+  <script src="high/unit35.js"></script>
+  <script src="high/unit36.js"></script>
+  <script src="high/unit37.js"></script>
+  <script src="high/unit38.js"></script>
+  <script src="high/unit39.js"></script>
+  <script src="high/unit40.js"></script>
   <script>setRegisterCollection('16');</script>
   <script src="16/unit1.js"></script>
   <script src="16/unit2.js"></script>
   <script src="16/unit3.js"></script>
   <script src="16/unit4.js"></script>
+  <script src="16/unit5.js"></script>
+  <script src="16/unit6.js"></script>
 
   <script>
     // ================================================================
@@ -606,10 +687,21 @@
     let wrongMap = new Map(), recentModes = [], isAnswering = false;
     let currentVoice = 'en-GB';
     let selectedTextbook = localStorage.getItem('vocabflow-textbook') || 'high';
+    const MODE_STRATEGY_KEY = 'vocabflow-mode-strategy';
+    const MODE_STRATEGIES = { MIXED: 'mixed', EN_ZH_ONLY: 'en-zh-only' };
+    let modeStrategy = normalizeModeStrategy(localStorage.getItem(MODE_STRATEGY_KEY) || MODE_STRATEGIES.MIXED);
 
     if (!TEXTBOOKS[selectedTextbook]) selectedTextbook = 'high';
 
     // ---- Helpers ----
+    function normalizeModeStrategy(value) {
+      return value === MODE_STRATEGIES.EN_ZH_ONLY ? MODE_STRATEGIES.EN_ZH_ONLY : MODE_STRATEGIES.MIXED;
+    }
+
+    function getModeStateText() {
+      return modeStrategy === MODE_STRATEGIES.EN_ZH_ONLY ? 'EN->ZH' : 'MIXED';
+    }
+
     const normalize = s => {
       if (!s) return '';
       return s.replace(/\((?:v|n|adj|adv|prep|vt|vi|conj|pron)\.?\)/gi, '')
@@ -702,6 +794,9 @@
     const speakerBtn   = document.getElementById('speakerBtn');
     const voiceToggleBtn  = document.getElementById('voiceToggleBtn');
     const voiceStateEl    = document.getElementById('voicestate');
+    const modeToggleBtn   = document.getElementById('modeToggleBtn');
+    const modeStateEl     = document.getElementById('modeState');
+    const modeToastEl     = document.getElementById('modeToast');
     const themeToggleBtn  = document.getElementById('themeToggleBtn');
     const backBtn         = document.getElementById('backBtn');
     const homeLink        = document.getElementById('homeLink');
@@ -761,6 +856,33 @@
       updateSpeakerVisibility();
     }
 
+    function updateModeToggleUI() {
+      const isEnglishToChinese = modeStrategy === MODE_STRATEGIES.EN_ZH_ONLY;
+      modeStateEl.textContent = getModeStateText();
+      modeToggleBtn.classList.toggle('active', isEnglishToChinese);
+      modeToggleBtn.setAttribute('aria-pressed', String(isEnglishToChinese));
+      modeToggleBtn.title = isEnglishToChinese ? 'EN->ZH only' : 'Mixed EN<->ZH';
+    }
+
+    function applyModeStrategy(nextStrategy, shouldNotify = true) {
+      modeStrategy = normalizeModeStrategy(nextStrategy);
+      localStorage.setItem(MODE_STRATEGY_KEY, modeStrategy);
+      recentModes = [];
+      updateModeToggleUI();
+
+      if (shouldNotify) {
+        const msg = modeStrategy === MODE_STRATEGIES.EN_ZH_ONLY
+          ? 'Mode switched: English prompt, answer in Chinese'
+          : 'Mode switched: Mixed EN<->ZH';
+        showTopRightPopup(msg);
+      }
+
+      const quizVisible = quizViewEl.classList.contains('active') && document.getElementById('quiz').style.display !== 'none';
+      if (quizVisible && questions[index] && !isAnswering) {
+        showQuestion();
+      }
+    }
+
     function switchTextbook(nextTextbook) {
       if (!TEXTBOOKS[nextTextbook] || nextTextbook === selectedTextbook) return;
 
@@ -801,6 +923,12 @@
       currentVoice = currentVoice === 'en-GB' ? 'en-US' : 'en-GB';
       voiceStateEl.innerText = currentVoice === 'en-GB' ? 'UK' : 'US';
     };
+    modeToggleBtn.onclick = () => {
+      const next = modeStrategy === MODE_STRATEGIES.EN_ZH_ONLY
+        ? MODE_STRATEGIES.MIXED
+        : MODE_STRATEGIES.EN_ZH_ONLY;
+      applyModeStrategy(next, true);
+    };
     function speak(text) {
       if (!text || !window.speechSynthesis) return;
       try {
@@ -828,12 +956,19 @@
     };
 
     // ---- Toast ----
-    let toastTimer;
+    let toastTimer, modeToastTimer;
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg; t.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    function showTopRightPopup(msg) {
+      modeToastEl.textContent = msg;
+      modeToastEl.classList.add('show');
+      clearTimeout(modeToastTimer);
+      modeToastTimer = setTimeout(() => modeToastEl.classList.remove('show'), 2600);
     }
 
     // ---- Navigation ----
@@ -910,6 +1045,9 @@
     }
 
     function pickMode() {
+      if (modeStrategy === MODE_STRATEGIES.EN_ZH_ONLY) {
+        recentModes.push('en-zh'); if (recentModes.length > 5) recentModes.shift(); return 'en-zh';
+      }
       const last3 = recentModes.slice(-3);
       if (last3.length === 3 && last3[0] === last3[1] && last3[1] === last3[2]) {
         const m = last3[0] === 'en-zh' ? 'zh-en' : 'en-zh';
@@ -1076,6 +1214,7 @@
     window.addEventListener('beforeunload', () => { window.speechSynthesis && window.speechSynthesis.cancel(); });
 
     // Build grid after all vocab scripts have loaded
+    updateModeToggleUI();
     updateTextbookSwitcher();
     buildBookGrid();
   </script>
