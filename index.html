@@ -64,10 +64,12 @@
     [data-theme="dark"] .app-toolbar { background: rgba(44,44,46,0.7); }
     [data-theme="dark"] .speaker-btn,
     [data-theme="dark"] .voice-toggle,
-    [data-theme="dark"] .mode-toggle { background: rgba(44,44,46,0.9); color:#ffffff; }
+    [data-theme="dark"] .mode-toggle,
+    [data-theme="dark"] .all-units-btn { background: rgba(44,44,46,0.9); color:#ffffff; }
     [data-theme="dark"] .speaker-btn:hover,
     [data-theme="dark"] .voice-toggle:hover,
-    [data-theme="dark"] .mode-toggle:hover { background: rgba(58,58,60,1); }
+    [data-theme="dark"] .mode-toggle:hover,
+    [data-theme="dark"] .all-units-btn:hover { background: rgba(58,58,60,1); }
     [data-theme="dark"] .review-item { background: rgba(44,44,46,0.6); }
     [data-theme="dark"] .review-item:hover { background: rgba(58,58,60,0.8); }
     [data-theme="dark"] .book-card { background: rgba(44,44,46,0.8); border-color: rgba(255,255,255,0.08); }
@@ -253,6 +255,31 @@
       opacity:0.85;
       margin-left:6px;
     }
+
+    .all-units-btn {
+      height:36px;
+      border:1px solid var(--divider);
+      border-radius:var(--radius-pill);
+      padding:0 14px;
+      background:rgba(255,255,255,0.7);
+      color:var(--txt);
+      font-family:"Young Serif",sans-serif;
+      font-size:12px;
+      font-weight:600;
+      line-height:1;
+      cursor:pointer;
+      white-space:nowrap;
+      backdrop-filter:var(--glass-blur);
+      -webkit-backdrop-filter:var(--glass-blur);
+      box-shadow:0 1px 2px rgba(0,0,0,0.03);
+      transition:all 0.2s ease;
+    }
+    .all-units-btn:hover {
+      background:#fff;
+      box-shadow:0 2px 8px rgba(0,113,227,0.1);
+      transform:translateY(-1px);
+    }
+    .all-units-btn:active { transform:scale(0.97); }
 
     .toolbar-back {
       display: none; align-items:center; gap:6px;
@@ -458,6 +485,7 @@
       .textbook-switcher { max-width:100%; }
       .textbook-tab { padding:7px 10px; font-size:11px; }
       .textbook-tab-count { display:none; }
+      .all-units-btn { height:30px; padding:0 10px; font-size:11px; }
       .word { font-size:40px; }
       .card { width:100%; max-width:100%; border-radius:0; padding:20px; }
       .github-btn { top:8px; right:12px; width:32px; height:32px; }
@@ -500,6 +528,9 @@
             <span class="textbook-tab-label">Week16</span>
           </button>
         </div>
+        <button id="allUnitsBtn" class="all-units-btn" type="button" title="Start all units test in current textbook" aria-label="Start all units test">
+          All Units Test
+        </button>
       </div>
     </div>
     <div class="toolbar-right"></div>
@@ -689,6 +720,7 @@
     let selectedTextbook = localStorage.getItem('vocabflow-textbook') || 'high';
     const MODE_STRATEGY_KEY = 'vocabflow-mode-strategy';
     const MODE_STRATEGIES = { MIXED: 'mixed', EN_ZH_ONLY: 'en-zh-only' };
+    const ALL_UNITS_QUIZ_SIZE = 30;
     let modeStrategy = normalizeModeStrategy(localStorage.getItem(MODE_STRATEGY_KEY) || MODE_STRATEGIES.MIXED);
 
     if (!TEXTBOOKS[selectedTextbook]) selectedTextbook = 'high';
@@ -799,6 +831,7 @@
     const modeToastEl     = document.getElementById('modeToast');
     const themeToggleBtn  = document.getElementById('themeToggleBtn');
     const backBtn         = document.getElementById('backBtn');
+    const allUnitsBtn     = document.getElementById('allUnitsBtn');
     const homeLink        = document.getElementById('homeLink');
     const homepageEl      = document.getElementById('homepage');
     const quizViewEl      = document.getElementById('quizView');
@@ -813,6 +846,34 @@
 
     function getTextbookLabel(name) {
       return name === '16' ? 'Book 16' : 'High';
+    }
+
+    function collectAllQuestionsInCurrentTextbook() {
+      const allQuestions = [];
+      for (const meta of Object.values(getActiveBooks())) {
+        allQuestions.push(...parseLines((meta.content || '').split('\n')));
+      }
+      return allQuestions;
+    }
+
+    function pickRandomQuestions(items, size) {
+      const shuffled = [...items];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled.slice(0, Math.min(size, shuffled.length));
+    }
+
+    function startAllUnitsQuiz() {
+      const allQuestions = collectAllQuestionsInCurrentTextbook();
+      if (allQuestions.length === 0) {
+        showToast('Current textbook has no valid word pairs');
+        return;
+      }
+      original = pickRandomQuestions(allQuestions, ALL_UNITS_QUIZ_SIZE);
+      activebook = `${getTextbookLabel(selectedTextbook)} - All Units (${original.length})`;
+      enterQuiz(activebook);
     }
 
     function updateTextbookSwitcher() {
@@ -900,6 +961,7 @@
     textbookTabs.forEach(tab => {
       tab.addEventListener('click', () => switchTextbook(tab.dataset.textbook));
     });
+    allUnitsBtn.addEventListener('click', startAllUnitsQuiz);
 
     // ---- Theme ----
     (function() {
