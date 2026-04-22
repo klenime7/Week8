@@ -871,6 +871,7 @@
         showToast('Current textbook has no valid word pairs');
         return;
       }
+      applyModeStrategy(MODE_STRATEGIES.EN_ZH_ONLY, false);
       original = pickRandomQuestions(allQuestions, ALL_UNITS_QUIZ_SIZE);
       activebook = `${getTextbookLabel(selectedTextbook)} - All Units (${original.length})`;
       enterQuiz(activebook);
