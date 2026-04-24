@@ -88,6 +88,12 @@
         .control-btn:active { transform: scale(0.98); }
         .play-all-btn { background-color: #4CAF50; color: white; }
         .stop-btn { background-color: #F44336; color: white; }
+        .toggle-zh-btn { background-color: #673AB7; color: white; }
+        .global-controls {
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #dce4ec;
+        }
         
         .status-text {
             color: #555;
@@ -138,6 +144,13 @@
 
     <h1>📚 英文單字發音練習</h1>
     <p class="subtitle">完美對位修正版 ── 打開章節可連播發音、且按單一字強制優先播放</p>
+
+    <div id="global-controls" class="controls-panel global-controls">
+        <button id="play-all-units-btn" class="control-btn play-all-btn">▶️ 一鍵全部播放</button>
+        <button id="global-stop-btn" class="control-btn stop-btn">⏹️ 停止全部</button>
+        <button id="toggle-zh-btn" class="control-btn toggle-zh-btn">🈶 顯示中文</button>
+        <span id="global-status-text" class="status-text"></span>
+    </div>
 
     <div id="vocabulary-container"></div>
 
@@ -249,8 +262,16 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
         }
 
         const container = document.getElementById('vocabulary-container');
+        const playAllUnitsBtn = document.getElementById('play-all-units-btn');
+        const globalStopBtn = document.getElementById('global-stop-btn');
+        const toggleZhBtn = document.getElementById('toggle-zh-btn');
+        const globalStatusTextEl = document.getElementById('global-status-text');
         let globalPlayInterrupt = false; 
         const allDetailsBoxes =[];
+        const allWordNodes = [];
+        const chineseMap = new Map();
+        let chineseMapLoaded = false;
+        let showChinese = false;
 
         // 這個函數讓任何語音安全結束與重新復位
         function stopAndClearStatus() {
@@ -261,6 +282,95 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
             document.querySelectorAll('.word-btn').forEach(btn => btn.classList.remove('playing'));
             // 讓所有的文字都重置為安靜
             document.querySelectorAll('.status-text').forEach(st => st.textContent = "");
+        }
+
+        function normalizeWordKey(word) {
+            return String(word || '').trim().toLowerCase();
+        }
+
+        function extractChineseMeaning(rawMeaning) {
+            return String(rawMeaning || '')
+                .replace(/\((?:v|n|adj|adv|prep|vt|vi|conj|pron)\.?\)/gi, '')
+                .replace(/(?:^|\s)(?:v|n|adj|adv|prep|vt|vi|conj|pron)\.(?=\s|$)/gi, ' ')
+                .replace(/[;；]/g, '、')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function parseChineseContent(contentText) {
+            String(contentText || '').split('\n').forEach((lineText) => {
+                const line = lineText.trim();
+                if (!line) return;
+                const match = line.match(/^([A-Za-z][A-Za-z\-']*)\s+(.+)$/);
+                if (!match) return;
+                const enWord = match[1];
+                const zhRaw = extractChineseMeaning(match[2]);
+                if (!zhRaw) return;
+                const key = normalizeWordKey(enWord);
+                if (!chineseMap.has(key)) chineseMap.set(key, zhRaw);
+            });
+        }
+
+        async function ensureChineseMapLoaded() {
+            if (chineseMapLoaded) return;
+            const filePaths = Array.from({ length: 40 }, (_, idx) => `high/unit${idx + 1}.js`);
+            const results = await Promise.all(
+                filePaths.map(path => fetch(path).then(r => (r.ok ? r.text() : "")).catch(() => ""))
+            );
+            results.forEach(fileText => {
+                const match = String(fileText).match(/content:\s*`([\s\S]*?)`/);
+                if (match && match[1]) parseChineseContent(match[1]);
+            });
+            chineseMapLoaded = true;
+        }
+
+        function refreshWordLabels() {
+            allWordNodes.forEach(wordData => {
+                const key = normalizeWordKey(wordData.text);
+                const zh = chineseMap.get(key);
+                wordData.el.textContent = (showChinese && zh)
+                    ? `${wordData.text} ｜ ${zh}`
+                    : wordData.text;
+            });
+        }
+
+        function openCurrentUnit(unitBox) {
+            if (!unitBox.open) unitBox.open = true;
+        }
+
+        function playSequentially(wordNodes, onDone) {
+            function playNext(currentIndex) {
+                if (globalPlayInterrupt || currentIndex >= wordNodes.length) {
+                    if (!globalPlayInterrupt && typeof onDone === 'function') onDone();
+                    return;
+                }
+
+                const wordObject = wordNodes[currentIndex];
+                const utterance = new SpeechSynthesisUtterance(wordObject.text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+
+                utterance.onstart = () => {
+                    openCurrentUnit(wordObject.unitBox);
+                    wordObject.el.classList.add('playing');
+                    wordObject.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                };
+
+                utterance.onend = () => {
+                    wordObject.el.classList.remove('playing');
+                    if (!globalPlayInterrupt) setTimeout(() => playNext(currentIndex + 1), 600);
+                };
+
+                utterance.onerror = () => {
+                    wordObject.el.classList.remove('playing');
+                    if (!globalPlayInterrupt) setTimeout(() => playNext(currentIndex + 1), 100);
+                };
+
+                setTimeout(() => {
+                    if (!globalPlayInterrupt) window.speechSynthesis.speak(utterance);
+                }, 50);
+            }
+            playNext(0);
         }
 
         // 當全部清單掃完並變成 Object 物件之後，正式構建按鈕區：
@@ -317,7 +427,9 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
                 btnNode.className = 'word-btn';
                 btnNode.textContent = wordText;
                 gridWrap.appendChild(btnNode);
-                allBtnNodes.push({ text: wordText, el: btnNode }); // 把按鈕記憶起來配對
+                const wordData = { text: wordText, el: btnNode, unitBox };
+                allBtnNodes.push(wordData); // 把按鈕記憶起來配對
+                allWordNodes.push(wordData);
             });
             unitBox.appendChild(gridWrap);
 
@@ -330,50 +442,9 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
 
                 statusTextEl.textContent = "🔊 正在連續播放...";
                 statusTextEl.style.color = "#4CAF50";
-
-                // 利用 index 一個一個照順序去叫單字發聲
-                function playSequentially(currentIndex) {
-                    if (globalPlayInterrupt || currentIndex >= allBtnNodes.length) {
-                        if (!globalPlayInterrupt) {
-                             statusTextEl.textContent = "✅ " + unitObj.name + " 已經順暢播放完畢";
-                        }
-                        return; // 如果收到終止信號或者唸到底部了就停下。
-                    }
-
-                    const wordObject = allBtnNodes[currentIndex];
-                    const utterance = new SpeechSynthesisUtterance(wordObject.text);
-                    utterance.lang = 'en-US';
-                    utterance.rate = 0.85;
-
-                    utterance.onstart = () => {
-                        wordObject.el.classList.add('playing');
-                        // 跟著節奏會動的滾軸！讓你唸到哪畫面前往哪
-                        wordObject.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    };
-
-                    utterance.onend = () => {
-                        wordObject.el.classList.remove('playing');
-                        if (!globalPlayInterrupt) {
-                            setTimeout(() => playSequentially(currentIndex + 1), 600); // 停頓 0.6 秒接著唸下一句
-                        }
-                    };
-
-                    utterance.onerror = (e) => {
-                        wordObject.el.classList.remove('playing');
-                        if (!globalPlayInterrupt) {
-                             // 少數設備容易把快速重啟當成error跳過，直接前進下一發音：
-                             setTimeout(() => playSequentially(currentIndex + 1), 100); 
-                        }
-                    }
-
-                    // 強迫緩衝小 Delay (非常關鍵：讓iOS / Windows在 cancel 後準備時間發聲才不會重疊成怪音)
-                    setTimeout(()=>{
-                        if (!globalPlayInterrupt) window.speechSynthesis.speak(utterance);
-                    }, 50);
-                }
-
-                // 直接命令從這個區塊第一句開始念！絕對100%指回正確課文：
-                playSequentially(0);
+                playSequentially(allBtnNodes, () => {
+                    statusTextEl.textContent = "✅ " + unitObj.name + " 已經順暢播放完畢";
+                });
             };
 
             // "強制中止" 按鍵邏輯
@@ -403,6 +474,35 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
             // 繪製結果附加給 HTML大框框！
             container.appendChild(unitBox);
         });
+
+        playAllUnitsBtn.onclick = () => {
+            stopAndClearStatus();
+            globalPlayInterrupt = false;
+            globalStatusTextEl.textContent = "🔊 正在一鍵播放全部單字...";
+            globalStatusTextEl.style.color = "#4CAF50";
+            playSequentially(allWordNodes, () => {
+                globalStatusTextEl.textContent = "✅ 全部單字播放完畢";
+            });
+        };
+
+        globalStopBtn.onclick = () => stopAndClearStatus();
+
+        toggleZhBtn.onclick = async () => {
+            if (!showChinese) {
+                globalStatusTextEl.textContent = "📚 正在載入中文資料...";
+                globalStatusTextEl.style.color = "#673AB7";
+                await ensureChineseMapLoaded();
+                showChinese = true;
+                toggleZhBtn.textContent = "🈚 隱藏中文";
+                refreshWordLabels();
+                globalStatusTextEl.textContent = "✅ 已顯示中文";
+            } else {
+                showChinese = false;
+                toggleZhBtn.textContent = "🈶 顯示中文";
+                refreshWordLabels();
+                globalStatusTextEl.textContent = "✅ 已隱藏中文";
+            }
+        };
 
         // 當離開此分頁或重新整理時直接安靜收口！
         window.onbeforeunload = function() {
