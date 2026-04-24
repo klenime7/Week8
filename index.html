@@ -720,6 +720,7 @@
     let selectedTextbook = localStorage.getItem('vocabflow-textbook') || 'high';
     const MODE_STRATEGY_KEY = 'vocabflow-mode-strategy';
     const MODE_STRATEGIES = { MIXED: 'mixed', EN_ZH_ONLY: 'en-zh-only' };
+    const UNIT_QUIZ_SIZE = 30;
     const ALL_UNITS_QUIZ_SIZE = 30;
     let modeStrategy = normalizeModeStrategy(localStorage.getItem(MODE_STRATEGY_KEY) || MODE_STRATEGIES.MIXED);
 
@@ -857,12 +858,20 @@
     }
 
     function pickRandomQuestions(items, size) {
+      if (!items.length || size <= 0) return [];
       const shuffled = [...items];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
-      return shuffled.slice(0, Math.min(size, shuffled.length));
+      if (shuffled.length >= size) {
+        return shuffled.slice(0, size);
+      }
+      const picked = [...shuffled];
+      while (picked.length < size) {
+        picked.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
+      }
+      return picked;
     }
 
     function startAllUnitsQuiz() {
@@ -1090,7 +1099,7 @@
           </div>`;
         card.addEventListener('click', () => {
           if (parsed.length === 0) { showToast(`"${name}" has no valid word pairs`); return; }
-          original = parsed;
+          original = pickRandomQuestions(parsed, UNIT_QUIZ_SIZE);
           activebook = name;
           enterQuiz(name);
         });
