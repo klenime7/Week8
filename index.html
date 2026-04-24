@@ -720,6 +720,7 @@
     let selectedTextbook = localStorage.getItem('vocabflow-textbook') || 'high';
     const MODE_STRATEGY_KEY = 'vocabflow-mode-strategy';
     const MODE_STRATEGIES = { MIXED: 'mixed', EN_ZH_ONLY: 'en-zh-only' };
+    const UNIT_QUIZ_SIZE = 30;
     const ALL_UNITS_QUIZ_SIZE = 30;
     let modeStrategy = normalizeModeStrategy(localStorage.getItem(MODE_STRATEGY_KEY) || MODE_STRATEGIES.MIXED);
 
@@ -856,13 +857,28 @@
       return allQuestions;
     }
 
-    function pickRandomQuestions(items, size) {
-      const shuffled = [...items];
-      for (let i = shuffled.length - 1; i > 0; i--) {
+    function shuffleArray(source) {
+      const items = [...source];
+      for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        [items[i], items[j]] = [items[j], items[i]];
       }
-      return shuffled.slice(0, Math.min(size, shuffled.length));
+      return items;
+    }
+
+    function pickRandomQuestions(items, size) {
+      if (items.length === 0 || size <= 0) return [];
+      const shuffled = shuffleArray(items);
+      if (shuffled.length >= size) {
+        return shuffled.slice(0, size);
+      }
+      const picked = [...shuffled];
+      while (picked.length < size) {
+        const remaining = size - picked.length;
+        const extra = shuffleArray(shuffled);
+        picked.push(...(remaining >= extra.length ? extra : extra.slice(0, remaining)));
+      }
+      return shuffleArray(picked);
     }
 
     function startAllUnitsQuiz() {
@@ -1090,7 +1106,7 @@
           </div>`;
         card.addEventListener('click', () => {
           if (parsed.length === 0) { showToast(`"${name}" has no valid word pairs`); return; }
-          original = parsed;
+          original = pickRandomQuestions(parsed, UNIT_QUIZ_SIZE);
           activebook = name;
           enterQuiz(name);
         });
