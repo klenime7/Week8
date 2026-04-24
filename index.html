@@ -857,13 +857,17 @@
       return allQuestions;
     }
 
-    function pickRandomQuestions(items, size) {
-      if (!items.length || size <= 0) return [];
-      const shuffled = [...items];
-      for (let i = shuffled.length - 1; i > 0; i--) {
+    function shuffleArray(items) {
+      for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        [items[i], items[j]] = [items[j], items[i]];
       }
+      return items;
+    }
+
+    function pickRandomQuestions(items, size) {
+      if (items.length === 0 || size <= 0) return [];
+      const shuffled = shuffleArray([...items]);
       if (shuffled.length >= size) {
         return shuffled.slice(0, size);
       }
@@ -871,11 +875,7 @@
       while (picked.length < size) {
         picked.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
       }
-      for (let i = picked.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [picked[i], picked[j]] = [picked[j], picked[i]];
-      }
-      return picked;
+      return shuffleArray(picked);
     }
 
     function startAllUnitsQuiz() {
