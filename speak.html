@@ -313,9 +313,21 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
 
         async function ensureChineseMapLoaded() {
             if (chineseMapLoaded) return;
-            const filePaths = Array.from({ length: 40 }, (_, idx) => `high/unit${idx + 1}.js`);
+            const filePaths = Array.from({ length: unitsData.length }, (_, idx) => `high/unit${idx + 1}.js`);
             const results = await Promise.all(
-                filePaths.map(path => fetch(path).then(r => (r.ok ? r.text() : "")).catch(() => ""))
+                filePaths.map(async (path) => {
+                    try {
+                        const response = await fetch(path);
+                        if (!response.ok) {
+                            console.warn(`中文資料載入失敗：${path}`);
+                            return "";
+                        }
+                        return await response.text();
+                    } catch (err) {
+                        console.warn(`中文資料載入失敗：${path}`, err);
+                        return "";
+                    }
+                })
             );
             results.forEach(fileText => {
                 const match = String(fileText).match(/content:\s*`([\s\S]*?)`/);
