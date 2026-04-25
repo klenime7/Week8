@@ -270,6 +270,7 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
         const allDetailsBoxes =[];
         const allWordNodes = [];
         const chineseMap = new Map();
+        const CHINESE_UNIT_BASE_PATH = 'high';
         let chineseMapLoaded = false;
         let showChinese = false;
 
@@ -313,7 +314,10 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
 
         async function ensureChineseMapLoaded() {
             if (chineseMapLoaded) return;
-            const filePaths = Array.from({ length: unitsData.length }, (_, idx) => `high/unit${idx + 1}.js`);
+            const filePaths = Array.from(
+                { length: unitsData.length },
+                (_, idx) => `${CHINESE_UNIT_BASE_PATH}/unit${idx + 1}.js`
+            );
             const results = await Promise.all(
                 filePaths.map(async (path) => {
                     try {
@@ -330,6 +334,7 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
                 })
             );
             results.forEach(fileText => {
+                // 目前 unit 檔案格式為 registerBook(... { content: `...` })，此處對應擷取 content 區塊。
                 const match = String(fileText).match(/content:\s*`([\s\S]*?)`/);
                 if (match && match[1]) parseChineseContent(match[1]);
             });
@@ -347,7 +352,7 @@ passerby, manpower, unfortunate, unfortunately, dosage, famine, habitat, inhabit
         }
 
         function openCurrentUnit(unitBox) {
-            if (!unitBox.open) unitBox.open = true;
+            unitBox.open = true;
         }
 
         function playSequentially(wordNodes, onDone) {
